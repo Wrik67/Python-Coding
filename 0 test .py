@@ -1,23 +1,32 @@
-row = int(input("Enter the number of rows:"))
+def calculator(choice, a, b):
+    if choice == 1:
+        return a + b
+    elif choice == 2:
+        return a - b
+    elif choice == 3:
+        return a * b
+    elif choice == 4:
+        if b == 0:
+            return "Error! Division by zero is not allowed."
+        return a / b
+    elif choice == 5:
+        return a % b
+    else:
+        return "Invalid choice"
+    
+print("--------Calculator--------")
+print("1. Addition")
+print("2. Subtraction")
+print("3. Multiplication")
+print("4. Division")
+print("5. Find reminder")
+print("--------------------------")
 
-if row % 2 == 0:
-    half = row // 2
-else:
-    half = row // 2 + 1
-space = half - 1
+choice = int(input("Enter choice (1/2/3/4/5): "))
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
 
-for i in range(1, half + 1):
-    x = " " * space
-    y = "*" * (2 * i - 1)
-
-    print(x+y)
-    space = space - 1
-
-space = 1
-
-for i in range(half - 1,0,-1):
-    x = " " * space
-    y = "*" * (2 * i - 1)
-
-    print(x+y)
-    space = space + 1
+result = calculator(choice, a, b)
+print("--------------------------")
+print(f"Result: {result}")
+print("--------------------------")
