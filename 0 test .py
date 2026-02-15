@@ -1,51 +1,56 @@
-import math
+import random
 
-def hexagonarea(side):
-    area = (3 * math.sqrt(3) * (side ** 2)) / 2
-    return area
-def octagonarea(side_length):
-    """
-    Calculates the area of a regular octagon given its side length.
-    Formula: Area = 2 * side^2 * (1 + sqrt(2))
-    """
-    if side_length <= 0:
-        return "Side length must be positive"
-    area = 2 * (side_length ** 2) * (1 + math.sqrt(2))
-    return area
+def generate_number():
+    return random.randint(1, 10)
 
-def squareArea(side):
-    area = side * side 
-    return area
-def circleArea(Radius):
-    area = 3.15169 * Radius ** 2
-    return area
+def get_player_input():
+    while True:
+        try:
+            guess = int(input("Enter your guess (1-10):"))
+            if 1 <= guess <= 10:
+                return guess
+            else:
+                print("Please enter a number within the range 1 to 10.") 
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
 
-print("Area calculator")
-print("Choose a shape: ")
-print("1.Hexagon")
-print("2.Octagon")
-print("3.Square")
-print("4.Circle")
 
-choice = int(input("Enter your choice from 1/2/3/4: "))
-if choice ==1:
+def play_round():
+    target = generate_number()
+    attempts = 0
+    while True:
+        guess = get_player_input()
+        attempts = attempts + 1
+        if guess < target:
+            print("Too low.Give another guess.")
+        elif guess > target:
+            print("Too high.Give another guess.")
+        else:
+            print(f"Exelent! You reached the target in {attempts} attempts")
+            return attempts
+        
 
-    s = float(input("Enter the side of Hexagon: "))
-    print("The area of Rectangle is: ", hexagonarea(s))
-elif choice ==2:
 
-    s = float(input("Enter the side of Octagon: "))
-    print("The area of Octagon  is: ", octagonarea(s))
+def ask_replay():
+    return input("\nWould you like to play another round  (y/n ):").lower() == 'y'
+def guess_the_number():
+    print("\nWelcome to the guess the number experience!")
+    print("The number is between 1 and 10.\n")
 
-elif choice ==3:
+    total_attempts = 0
+    rounds_played = 0
 
-    s = float(input("Enter the side of square: "))
-    print("The area of square  is: ", squareArea(s))
+    while True:
+        print("\n---New round (Range 1-10)---")
+        attempts = play_round()
+        total_attempts += attempts 
+        rounds_played += 1
 
-elif choice ==4:
+        if not ask_replay():
+            break
 
-    r = float(input("Enter the radius of circle: "))
-    print("The area of circle  is: ", circleArea(r))
-
-else:
-    print("Invalid input!")
+    print("\n---Session Summary---")
+    print(f"Total round played: {rounds_played}")
+    print(f"Total attempts: {total_attempts}")
+    print("Thank you for playing.Session terminated.\n")
+guess_the_number()
