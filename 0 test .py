@@ -1,56 +1,29 @@
-import random
+def calculator(choice, a, b):
+    if choice == 1:
+        return a+b
+    elif choice == 2:
+        return a-b
+    elif choice == 3:
+        return a*b
+    elif choice == 4:
+        if b == 0:
+            return "Erorr! Division by 0 is not allowed"
+        return a/b
+    else:
+        return "Invalid input"
+    
+print("---------Calculator---------")
+print("1.Addition")
+print("2.Subtraction")
+print("3.Multiplication")
+print("4.Division")
+print("----------------------------")
 
-def generate_number():
-    return random.randint(1, 10)
+choice = int(input("Enter choice (1/2/3/4): "))
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
 
-def get_player_input():
-    while True:
-        try:
-            guess = int(input("Enter your guess (1-10):"))
-            if 1 <= guess <= 10:
-                return guess
-            else:
-                print("Please enter a number within the range 1 to 10.") 
-        except ValueError:
-            print("Invalid input! Please enter a valid number.")
-
-
-def play_round():
-    target = generate_number()
-    attempts = 0
-    while True:
-        guess = get_player_input()
-        attempts = attempts + 1
-        if guess < target:
-            print("Too low.Give another guess.")
-        elif guess > target:
-            print("Too high.Give another guess.")
-        else:
-            print(f"Exelent! You reached the target in {attempts} attempts")
-            return attempts
-        
-
-
-def ask_replay():
-    return input("\nWould you like to play another round  (y/n ):").lower() == 'y'
-def guess_the_number():
-    print("\nWelcome to the guess the number experience!")
-    print("The number is between 1 and 10.\n")
-
-    total_attempts = 0
-    rounds_played = 0
-
-    while True:
-        print("\n---New round (Range 1-10)---")
-        attempts = play_round()
-        total_attempts += attempts 
-        rounds_played += 1
-
-        if not ask_replay():
-            break
-
-    print("\n---Session Summary---")
-    print(f"Total round played: {rounds_played}")
-    print(f"Total attempts: {total_attempts}")
-    print("Thank you for playing.Session terminated.\n")
-guess_the_number()
+result = calculator(choice, a, b)
+print("--------------------------")
+print(f"Result: {result}")
+print("--------------------------")
