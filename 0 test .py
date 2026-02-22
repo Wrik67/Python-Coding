@@ -1,29 +1,44 @@
-def calculator(choice, a, b):
-    if choice == 1:
-        return a+b
-    elif choice == 2:
-        return a-b
-    elif choice == 3:
-        return a*b
-    elif choice == 4:
-        if b == 0:
-            return "Erorr! Division by 0 is not allowed"
-        return a/b
-    else:
-        return "Invalid input"
-    
-print("---------Calculator---------")
-print("1.Addition")
-print("2.Subtraction")
-print("3.Multiplication")
-print("4.Division")
-print("----------------------------")
+def TriangleArea(Base,Hight):
+    area = (Base*Hight)/2
+    return area
+def squareArea(side):
+    area = side ** 2
+    return area
+def rectangleArea(Lenth,Width):
+    area = Lenth * Width
+    return area
+def CircleArea(radius):
+    area = 3.15169 * radius ** 2
+    return area
 
-choice = int(input("Enter choice (1/2/3/4): "))
-a = float(input("Enter first number: "))
-b = float(input("Enter second number: "))
+print("Area calculator")
+print("Choose a shape: ")
+print("1.Rectangle")
+print("2.Triangle")
+print("3.Square")
+print("4.Circle")
 
-result = calculator(choice, a, b)
-print("--------------------------")
-print(f"Result: {result}")
-print("--------------------------")
+choice = int(input("Enter your choice from 1/2/3/4: "))
+if choice ==1:
+
+    l = float(input("Enter the lenth of rectangle: "))
+    w = float(input("Enter the width of rectangle: "))
+    print("The area of Rectangle is: ", rectangleArea(l,w))
+elif choice ==2:
+
+    b = float(input("Enter the base of triangle: "))
+    h = float(input("Enter the hight of triangle: "))
+    print("The area of triangle  is: ", TriangleArea(b,h))
+
+elif choice ==3:
+
+    s = float(input("Enter the side of square: "))
+    print("The area of square  is: ", squareArea(s))
+
+elif choice ==4:
+
+    r = float(input("Enter the radius of circle"))
+    print("The area of circle is: " , CircleArea(r))
+
+else:
+    print("Invalid input!")
