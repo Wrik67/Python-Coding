@@ -1,44 +1,67 @@
-def TriangleArea(Base,Hight):
-    area = (Base*Hight)/2
-    return area
-def squareArea(side):
-    area = side ** 2
-    return area
-def rectangleArea(Lenth,Width):
-    area = Lenth * Width
-    return area
-def CircleArea(radius):
-    area = 3.15169 * radius ** 2
-    return area
+TAX_RATE = 0.065
 
-print("Area calculator")
-print("Choose a shape: ")
-print("1.Rectangle")
-print("2.Triangle")
-print("3.Square")
-print("4.Circle")
+menu = {
 
-choice = int(input("Enter your choice from 1/2/3/4: "))
-if choice ==1:
+1: ("Burger", 150.00),
+2: ("Fried Chicken", 175.00),
+3: ("Soda", 60.00),
+4: ("Salad", 120.00),
+5: ("Pizza", 500.00),
+6: ("Ice Cream", 150.00),
+7: ("Coffee", 200.00),
+8: ("Tea", 55.00),
+9: ("Juice", 90.00),
+10: ("Fried Rice", 210.00),
+11: ("Pasta", 250.00),
+12: ("Sandwich", 200.00),
+13: ("Water", 20.00),
+14: ("Meetbox", 250.00)
+}
 
-    l = float(input("Enter the lenth of rectangle: "))
-    w = float(input("Enter the width of rectangle: "))
-    print("The area of Rectangle is: ", rectangleArea(l,w))
-elif choice ==2:
+order = {}
 
-    b = float(input("Enter the base of triangle: "))
-    h = float(input("Enter the hight of triangle: "))
-    print("The area of triangle  is: ", TriangleArea(b,h))
+def show_menu():
+    print("\nMenu:")
+    for serial, (item, price) in menu.items():
+        print(f"{serial}. {item} - Tk. {price}")
 
-elif choice ==3:
 
-    s = float(input("Enter the side of square: "))
-    print("The area of square  is: ", squareArea(s))
+def take_order():
+    while True:
+        choice = int(input("\nEnter item name or serial number (or 'done' to finish): ")).strip()
+        if choice.lower() == 'done':
+            break
 
-elif choice ==4:
+        selected_item = None
 
-    r = float(input("Enter the radius of circle"))
-    print("The area of circle is: " , CircleArea(r))
+        if choice.isdigit() and int (choice) in menu:
+            selected_item = menu[int(choice)][0]
+        else:
+            print("Invalid selection. Please try again")
 
-else:
-    print("Invalid input!")
+def calculate_total():
+    total = 0.0
+    for item, quantity in order.items():
+        for _ , (menu_item, price) in menu.items():
+            if menu_item == item:
+                total += price * quantity
+                break
+            tax = total * TAX_RATE
+            return total, tax, total + tax
+        
+def print_bill():
+    print("\n---Bill Summary---")
+    total, tax, total_with_tax = calculate_total()
+    for item, quantity in order.items():
+        for _ , (menu_item, price) in menu.items():
+            if menu_item == item:
+                print(f"{item} X {quantity} = Tk. {price * quantity:2f}")
+                break
+    print(f"Subtotal: Tk. {total:.2f}")
+    print(f"Tax (6.7%): Tk. {tax:.2f}")
+    print(f"Total amount: Tk. {total_with_tax:.2f}")
+
+if __name__ == "__main__":
+    take_order()
+    print_bill()
+    print("\nThank you for dining with us!")
