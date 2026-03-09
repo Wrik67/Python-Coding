@@ -1,29 +1,10 @@
-def calculator(choice, a, b):
-    if choice == 1:
-        return a + b
-    elif choice == 2:
-        return a - b
-    elif choice == 3:
-        return a * b
-    elif choice == 4:
-        if b == 0:
-            return "Division by zero is allowed."
-        return a / b
-    else:
-        return "Invalid choice"
-    
-print("-------Calculator-------")
-print("1. Addition")
-print("2. Subtraction")
-print("3. Multiplition")
-print("4. Divition")
-print("------------------------")
+months = str(input("Do you want to see all the months name (yes/no): ")).lower()
 
-choice = int(input("Enter choice 1/2/3/4: "))
-a = float(input("Enter first number: "))
-b = float(input("Enter second number: "))
+if months == "yes":
+    print("The months name are: January, February, March, April, May, June, July, August, September, October, November and December.")
 
-result = calculator(choice, a, b)
-print("--------------------------")
-print(f"Result: {result}")
-print("--------------------------")
+if months == "no":
+    print("Goodbye")
+
+else:
+    print("Invalid input. Try again.")
