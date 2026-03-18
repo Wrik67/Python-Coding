@@ -1,18 +1,40 @@
-marks = (10, 20, 30, 40, 50)
-fruits = ("apple", "banana", "cherry", "banana")
+student = {
+    "name": "Wrik",
+    "Age": "10",
+    "roll": "07",
+    "Adress": "Mirpur 11",
+    "Class": "STD-3",
+    "city": "Dhaka"
+}
 
-print("1. Accessing an Element:", marks[2])
-print("2. Slicing:", marks[1:4])
-print("3. Length:", len(fruits))
-print("4. Count:", fruits.count("banana"))
-print("5. Index:", fruits.index("cherry"))
+print("---Original Dictionary---")
+print(student)
 
-t3 = marks + fruits
-print("6. Concatenation:", t3)
+print("Name: ", student["name"])
+print("Age: ", student["Age"])
+print(student)
 
-t4 = marks * 2
-print("7. Repitition:", t4)
-print("8. Membership cheak:", 30 in marks)
-lst = list(marks)
-print("9. Tuple to list:", lst)
+student["school"] = "Heed International School"
+print("\nAfter Adding New Field:")
+print(student)
 
+student["roll"] = "01"
+print("\nAfter Updating Age:")
+print(student)
+
+removed = student.pop("Adress")
+print("\nRemoved city:", removed)
+print("After pop: ", student)
+
+print("\nkeys:", student.keys())
+print("\nvalues:", student.values())
+print("\nitems:", student.items())
+
+copy_student = student.copy()
+print("\nCopy of student", copy_student)
+
+student.update({"Class": "4"})
+print("\nAfter update:", student)
+
+val = student.setdefault("hobby", "Reading books")
+print("\nAfter setdefault():", student)
