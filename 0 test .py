@@ -1,40 +1,15 @@
-student = {
-    "name": "Wrik",
-    "Age": "10",
-    "roll": "07",
-    "Adress": "Mirpur 11",
-    "Class": "STD-3",
-    "city": "Dhaka"
-}
+a = {1, 2, 3, 4, 5}
+b = {2, 4, 6, 7, 8}
 
-print("---Original Dictionary---")
-print(student)
+print("Set A: ", a)
+print("Set B: ", b)
 
-print("Name: ", student["name"])
-print("Age: ", student["Age"])
-print(student)
+print("Union: ", a.union(b))
 
-student["school"] = "Heed International School"
-print("\nAfter Adding New Field:")
-print(student)
+print("Intersection:", a.intersection(b))
 
-student["roll"] = "01"
-print("\nAfter Updating Age:")
-print(student)
+print("Difference (A - B):", a - b)
 
-removed = student.pop("Adress")
-print("\nRemoved city:", removed)
-print("After pop: ", student)
+print("Difference (B - A):", b - a)
 
-print("\nkeys:", student.keys())
-print("\nvalues:", student.values())
-print("\nitems:", student.items())
-
-copy_student = student.copy()
-print("\nCopy of student", copy_student)
-
-student.update({"Class": "4"})
-print("\nAfter update:", student)
-
-val = student.setdefault("hobby", "Reading books")
-print("\nAfter setdefault():", student)
+print("Symmetric Difference:", a ^ b)
