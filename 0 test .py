@@ -1,15 +1,29 @@
-a = {1, 2, 3, 4, 5}
-b = {2, 4, 6, 7, 8}
+import random
 
-print("Set A: ", a)
-print("Set B: ", b)
+def generate_number():
+    return random.randint(1, 10)
 
-print("Union: ", a.union(b))
+def get_player_input():
+    while True:
+        try:
+            guess = int(input("Enter a number (1 to 10):"))
+            if 1 <= guess <= 10:
+                return guess
+            else:
+                print("Please enter a number within the range of 1 to 10")
 
-print("Intersection:", a.intersection(b))
+        except ValueError:
+                print("Invalid input. Plese enter a valid number.")
 
-print("Difference (A - B):", a - b)
-
-print("Difference (B - A):", b - a)
-
-print("Symmetric Difference:", a ^ b)
+def play_round():
+     target = generate_number()
+     attepts = 0
+     while True:
+          target = get_player_input()
+          attempts = attempts + 1
+          if guess < target:
+               print("Too low try another attempt.")
+          elif guess > target:
+               print("Too high try another attempt.")
+          else:
+               
