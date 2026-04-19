@@ -36,4 +36,30 @@ class Account:
             print("No transactions available.")
             return
         for txn in self.transactions:
-            print(f"{}")
+            print(f"{txn['date']} | {txn['type']} | {txn['amount']} Taka | Balance:{txn['balance']} Taka")
+
+    def _add_transaction(self, txn_type, amount):
+        txn = {
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "type": txn_type,
+            "amount": amount,
+            "balance": self.balance
+        }
+        self.transactions.append(txn)
+
+    def to_record(self):
+        txn_data = ";".join(
+            [f"{t['date']}, {t['type']}, {t['amount']}, {t['balance']}" for t in self.transactions]
+        )
+        return f"{self.account_number}|{self.holder_neme}|{self.balance}|{txn_data}\n"
+    
+    @staticmethod
+    def from_record(line):
+        parts = line.strip().split("|")
+        if len(parts) < 4:
+            return None
+        account_number = parts[0]
+        holder_name = parts[1]
+        balance = float(parts[2])
+        account = Account(account_number, holder_name, balance)
+        txn_data = parts[3]
