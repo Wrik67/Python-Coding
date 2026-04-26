@@ -19,6 +19,23 @@ student["age"] = 12
 print("\nAfter Updating Age:")
 print(student)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 removed = student.pop("city")
 print("\nRemoved City:", removed)
 print("After pop():", student)
